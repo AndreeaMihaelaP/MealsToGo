@@ -1,25 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
 
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { RestaurantInfoCard } from "features/restaurants/components/restaurant-info-card.component";
+import { Spacer } from "components/spacer/spacer.component";
 
-const { currentHeight } = StatusBar;
-
-const SafeArea = styled.SafeAreaView`
-  flex: 1;
-  ${currentHeight && `margin-top: ${currentHeight}px`};
-`;
-
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
-
-const RestaurantListContainer = styled.View`
-  flex: 1;
-  padding: ${(props) => props.theme.space[3]};
-`;
+import {
+  SafeArea,
+  SearchContainer,
+  RestaurantList,
+} from "./restaurants.styles";
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,9 +25,15 @@ export const RestaurantsScreen = () => {
           value={searchQuery}
         />
       </SearchContainer>
-      <RestaurantListContainer>
-        <RestaurantInfoCard />
-      </RestaurantListContainer>
+      <RestaurantList
+        data={[{ name: "1" }, { name: "2" }, { name: "3" }]}
+        renderItem={() => (
+          <Spacer position="bottom" size="large">
+            <RestaurantInfoCard />
+          </Spacer>
+        )}
+        keyExtractor={(item) => item.name}
+      />
     </SafeArea>
   );
 };

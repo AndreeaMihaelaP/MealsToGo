@@ -1,5 +1,4 @@
-import React from "react";
-import styled, { useTheme } from "styled-components/native";
+import styled from "styled-components/native";
 
 const defaultTextStyles = (theme) => `
   font-family: ${theme.fonts.body};
@@ -41,16 +40,11 @@ const variants = {
   hint,
 };
 
-const TextView = styled.Text`
+export const Text = styled.Text`
   ${({ theme }) => defaultTextStyles(theme)}
   ${({ variant, theme }) => variants[variant](theme)}
 `;
 
-export const Text = ({ variant }) => {
-  const theme = useTheme();
-  return <TextView variant={variant} theme={theme} />;
-};
-
-TextView.defaultProps = {
+Text.defaultProps = {
   variant: "body",
 };
