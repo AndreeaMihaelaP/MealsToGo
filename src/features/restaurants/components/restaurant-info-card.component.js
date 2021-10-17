@@ -21,15 +21,16 @@ import {
 
 export const RestaurantInfoCard = ({ restaurant }) => {
   const {
-    name = "Some Restaurant",
+    name = "Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
       "https://i2-prod.essexlive.news/incoming/article5061546.ece/ALTERNATES/s810/0_breakfast-690128_1280.jpg",
     ],
-    address = " 100 random street",
+    address = "100 random street",
     isOpenNow = true,
-    rating = 4,
+    rating = 0,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -42,8 +43,13 @@ export const RestaurantInfoCard = ({ restaurant }) => {
           <Text variant="label">{name}</Text>
           <Section>
             <Rating>
-              {ratingArray.map((item, index) => (
-                <SvgXml key={index} xml={star} width={20} height={20} />
+              {ratingArray.map((_, index) => (
+                <SvgXml
+                  key={`star-${placeId}-${index}`}
+                  xml={star}
+                  width={20}
+                  height={20}
+                />
               ))}
             </Rating>
             <SectionEnd>

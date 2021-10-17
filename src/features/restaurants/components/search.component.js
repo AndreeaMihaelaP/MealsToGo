@@ -15,13 +15,8 @@ export const Search = () => {
   };
 
   const onSubmit = () => {
-    console.log("editing", searchKeyword);
     search(searchKeyword);
   };
-
-  useEffect(() => {
-    search(searchKeyword);
-  }, []);
 
   return (
     <SearchContainer>
