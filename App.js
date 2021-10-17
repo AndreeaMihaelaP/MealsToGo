@@ -14,6 +14,7 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
 import { theme } from "infrastructure/theme";
 import { RestaurantsContextProvider } from "services/restaurants/restaurants.context";
+import { LocationContextProvider } from "services/location/location.context";
 
 import { RestaurantsScreen } from "features/restaurants/screens/restaurants.screen";
 
@@ -35,6 +36,8 @@ const Details = () => (
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   return {
+    tabBarActiveTintColor: "tomato",
+    tabBarInactiveTintColor: "gray",
     tabBarIcon: ({ size, color }) => (
       <Ionicons name={iconName} size={size} color={color} />
     ),
@@ -57,14 +60,16 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOptions}>
-              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-              <Tab.Screen name="Details" component={Details} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator screenOptions={createScreenOptions}>
+                <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+                <Tab.Screen name="Details" component={Details} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

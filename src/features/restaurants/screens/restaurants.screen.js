@@ -1,16 +1,15 @@
-import React, { useState, useContext } from "react";
-import { View } from "react-native";
-import { Searchbar, Colors } from "react-native-paper";
+import React, { useContext } from "react";
+import { Colors } from "react-native-paper";
 
 import { RestaurantsContext } from "services/restaurants/restaurants.context";
 
 import { RestaurantInfoCard } from "features/restaurants/components/restaurant-info-card.component";
+import { Search } from "features/restaurants/components/search.component";
 
 import { Spacer } from "components/spacer/spacer.component";
 import { SafeArea } from "components/utility/safe-area.component";
 
 import {
-  SearchContainer,
   RestaurantList,
   LoadingContainer,
   Loading,
@@ -18,10 +17,6 @@ import {
 
 export const RestaurantsScreen = () => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const onChangeSearch = (query) => setSearchQuery(query);
-
   return (
     <SafeArea>
       {isLoading && (
@@ -29,14 +24,7 @@ export const RestaurantsScreen = () => {
           <Loading size={50} animating={true} color={Colors.blue500} />
         </LoadingContainer>
       )}
-      <SearchContainer>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
-      </SearchContainer>
-
+      <Search />
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
