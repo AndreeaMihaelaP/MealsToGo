@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
 
 import { Spacer } from "components/spacer/spacer.component";
@@ -20,17 +19,19 @@ import {
   Address,
 } from "./restaurant-info-card.styles";
 
-export const RestaurantInfoCard = ({
-  name = "Some Restaurant",
-  icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-  photos = [
-    "https://i2-prod.essexlive.news/incoming/article5061546.ece/ALTERNATES/s810/0_breakfast-690128_1280.jpg",
-  ],
-  address = " 100 random street",
-  isOpenNow = true,
-  rating = 4,
-  isClosedTemporarily = true,
-}) => {
+export const RestaurantInfoCard = ({ restaurant }) => {
+  const {
+    name = "Some Restaurant",
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    photos = [
+      "https://i2-prod.essexlive.news/incoming/article5061546.ece/ALTERNATES/s810/0_breakfast-690128_1280.jpg",
+    ],
+    address = " 100 random street",
+    isOpenNow = true,
+    rating = 4,
+    isClosedTemporarily = true,
+  } = restaurant;
+
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
