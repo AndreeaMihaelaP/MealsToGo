@@ -3,6 +3,5 @@
 The search functionality works only with Antwerp, San Francisco, Chicago, Toronto.
 
 
+https://user-images.githubusercontent.com/53224914/137882412-a849282c-2c24-46bd-96e1-d13dd80d6b99.mp4
 
-
-![meals](https://user-images.githubusercontent.com/53224914/137881998-873ccd37-49a2-42d2-b4d0-760c2d4fa6bf.gif)
