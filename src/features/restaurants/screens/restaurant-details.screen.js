@@ -1,19 +1,34 @@
 import React, { useState } from "react";
+import styled from "styled-components/native";
 import { List } from "react-native-paper";
+
+import { Text } from "components/typography/text.component";
 
 import { RestaurantInfoCard } from "features/restaurants/components/restaurant-info-card.component";
 
 import { SafeArea } from "components/utility/safe-area.component";
 import { ScrollView } from "react-native";
 
+const NoDetails = styled(Text)`
+  padding: ${(props) => props.theme.space[3]};
+  text-align: center;
+`;
+
 export const RestaurantDetails = ({ route }) => {
-  const { restaurant } = route.params;
+  let restaurant = null;
+
+  if (route && route.params) {
+    restaurant = route.params.restaurant;
+  }
 
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);
   const [drinksExpanded, setDrinksExpanded] = useState(false);
 
+  if (!restaurant) {
+    return <NoDetails variant="label">No Restaurant Details</NoDetails>;
+  }
   return (
     <SafeArea>
       <ScrollView>
